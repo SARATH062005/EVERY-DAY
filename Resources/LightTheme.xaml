@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Notion Light Theme Colors -->
+    <SolidColorBrush x:Key="WindowBackground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ContentBackground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="PrimaryText" Color="#37352F"/>
+    <SolidColorBrush x:Key="SecondaryText" Color="#9B9A97"/>
+    <SolidColorBrush x:Key="AccentColor" Color="#2EAADC"/>
+    <SolidColorBrush x:Key="BorderColor" Color="#E1E1E0"/>
+    <SolidColorBrush x:Key="HoverBackground" Color="#EFEEFC"/> 
+    <SolidColorBrush x:Key="SelectionColor" Color="#D9F0FF"/>
+
+    <FontFamily x:Key="MainFont">Segoe UI Variable Display, Segoe UI, sans-serif</FontFamily>
+</ResourceDictionary>

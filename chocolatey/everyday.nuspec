@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>everyday</id>
+    <version>1.0.0</version>
+    <title>EVERY-DAY</title>
+    <authors>Your Name</authors>
+    <owners>Your Name</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/yourusername/EVERY-DAY/blob/main/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/yourusername/EVERY-DAY</projectUrl>
+    <description>
+      EVERY-DAY is a beautiful, lightweight desktop workspace application for Windows 
+      that helps you organize your daily notes, tasks, and thoughts.
+      
+      Features:
+      - Multiple block types (Text, Checkbox, Header)
+      - Section organization (Notes, ToDo, Tasks, Journal)
+      - Dark/Light theme support
+      - Auto-save functionality
+      - Drag-and-drop reordering
+      - System tray integration
+      - Lightning fast startup
+      - Local-first data storage
+    </description>
+    <summary>A beautiful, lightweight desktop workspace for Windows</summary>
+    <releaseNotes>
+      Version 1.0.0:
+      - Initial release
+      - Core functionality
+      - Performance optimizations
+      - Theme support
+    </releaseNotes>
+    <copyright>Copyright 2026</copyright>
+    <tags>productivity notes todo tasks journal wpf dotnet windows desktop</tags>
+    <dependencies>
+      <dependency id="dotnet-8.0-runtime" version="8.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
