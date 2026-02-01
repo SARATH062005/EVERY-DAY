@@ -1,3 +1,0 @@
-Stop-Process -Name "EveryDay" -Force
-dotnet build
-dotnet run
