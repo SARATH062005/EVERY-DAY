@@ -90,12 +90,16 @@
 ### Main Interface (Dark Theme)
 The application features a clean, modern interface with a sidebar for navigation and a main content area for your blocks.
 
-![Main Interface](Docs\imgs\imageDT.png)
+<p align="center">
+  <img src="Docs/imgs/imageDT.png" alt="Main Interface" width="400" height="400" />
+</p>
 
 ### Light Theme
 Seamlessly switch between dark and light themes to match your preference or system settings.
 
-![Light Theme](Docs\imgs\imageLT.png)
+<p align="center">
+  <img src="Docs/imgs/imageLT.png" alt="Light Theme" width="400" height="400" />
+</p>
 
 ## 📥 Installation
 
