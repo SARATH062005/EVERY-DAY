@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>EveryDay.Tools</RootNamespace>
-    <AssemblyName>DbViewer</AssemblyName>
+    <AssemblyName>EveryDay</AssemblyName>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>

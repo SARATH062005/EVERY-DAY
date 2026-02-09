@@ -89,6 +89,8 @@ namespace EveryDay.Models
     public class HeaderBlock : Block
     {
         private string _content = "";
+        private bool _isChecked;
+
         public string Content 
         { 
             get => _content;
@@ -101,6 +103,20 @@ namespace EveryDay.Models
                 }
             }
         }
+
+        public bool IsChecked 
+        { 
+            get => _isChecked;
+            set 
+            { 
+                if (_isChecked != value)
+                {
+                    _isChecked = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public HeaderBlock() { Type = "Header"; }
     }
 }

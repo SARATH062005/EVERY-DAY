@@ -189,13 +189,34 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="📌" FontSize="20" Margin="0,0,8,0" VerticalAlignment="Top" Opacity="0.6"/>
+                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                              VerticalAlignment="Top"
+                              Margin="0,4,8,0"
+                              Cursor="Hand">
+                        <CheckBox.Template>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Grid Background="Transparent">
+                                    <TextBlock x:Name="PinIcon" Text="📌" FontSize="20" Opacity="0.4"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="PinIcon" Property="Opacity" Value="1.0"/>
+                                        <Setter TargetName="PinIcon" Property="Text" Value="📍"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="PinIcon" Property="Opacity" Value="0.8"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
                     <TextBox Grid.Column="1" 
                              Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                              Style="{StaticResource BlockTextBox}" 
                              FontSize="22" 
                              FontWeight="Bold"
-                             MinHeight="35"/>
+                             MinHeight="35"
+                             TextDecorations="{Binding IsChecked, Converter={StaticResource StrikeConverter}}"/>
                     <Button Grid.Column="2" 
                             Command="{Binding DataContext.DeleteBlockCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                             CommandParameter="{Binding}"
@@ -440,6 +461,14 @@
                                    FontWeight="SemiBold" 
                                    Foreground="{DynamicResource PrimaryText}"
                                    VerticalAlignment="Center"/>
+                        
+                        <TextBlock Text="{Binding StreakDisplay}" 
+                                   FontSize="18" 
+                                   FontWeight="Bold" 
+                                   Foreground="{DynamicResource PrimaryText}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
                     </Grid>
                 </Border>
 

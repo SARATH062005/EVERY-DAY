@@ -11,9 +11,12 @@ namespace EveryDay.ViewModels
     {
         private LiteDbContext? _context;
         private BlockRepository? _repository;
+        private UserStatsRepository? _statsRepository;
+        private UserStats? _stats;
         private bool _isInitialized = false;
         private string _searchText = "";
         private string _currentSection = "Notes";
+        private string _streakDisplay = "🔥 0";
         
         public ObservableCollection<Block> Blocks { get; set; } = new ObservableCollection<Block>();
         
@@ -38,6 +41,12 @@ namespace EveryDay.ViewModels
             }
         }
 
+        public string StreakDisplay
+        {
+            get => _streakDisplay;
+            set { _streakDisplay = value; OnPropertyChanged(); }
+        }
+
         public RelayCommand AddBlockCommand { get; }
         public RelayCommand ToggleThemeCommand { get; }
         public RelayCommand ChangeSectionCommand { get; }
@@ -59,6 +68,9 @@ namespace EveryDay.ViewModels
                  _repository!.Insert(block);
                  Blocks.Add(block);
                  
+                 // Update streak on activity
+                 UpdateStreak();
+
                  // Subscribe to property changes for the new block
                  SubscribeToBlockChanges(block);
              });
@@ -101,6 +113,11 @@ namespace EveryDay.ViewModels
                 
                 _context = new LiteDbContext();
                 _repository = new BlockRepository(_context);
+                _statsRepository = new UserStatsRepository(_context);
+                
+                _stats = _statsRepository.GetStats();
+                UpdateStreakDisplay();
+
                 _isInitialized = true;
                 
                 // Load initial data
@@ -109,6 +126,38 @@ namespace EveryDay.ViewModels
                     LoadBlocksForSection();
                 });
             }
+        }
+
+        private void UpdateStreak()
+        {
+             if (!_isInitialized || _stats == null || _statsRepository == null) return;
+
+             var today = DateTime.Today;
+             if (_stats.LastActivityDate == today) return;
+
+             if (_stats.LastActivityDate == today.AddDays(-1))
+             {
+                 _stats.CurrentStreak++;
+             }
+             else
+             {
+                 _stats.CurrentStreak = 1;
+             }
+
+             if (_stats.CurrentStreak > _stats.LongestStreak)
+             {
+                 _stats.LongestStreak = _stats.CurrentStreak;
+             }
+
+             _stats.LastActivityDate = today;
+             _statsRepository.Update(_stats);
+             UpdateStreakDisplay();
+        }
+
+        private void UpdateStreakDisplay()
+        {
+            if (_stats == null) return;
+            StreakDisplay = $"🔥 {_stats.CurrentStreak}";
         }
 
         private void Blocks_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -130,6 +179,7 @@ namespace EveryDay.ViewModels
                 if (s is Block changedBlock)
                 {
                     _repository.Update(changedBlock);
+                    UpdateStreak();
                 }
             };
         }

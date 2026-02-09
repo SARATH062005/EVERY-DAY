@@ -47,6 +47,15 @@ namespace EveryDay.Tools
                     viewer.SearchBlocks(args[1]);
                     break;
 
+                case "recovery":
+                case "restore":
+                    RecoveryTool.RunRecovery(args);
+                    break;
+
+                case "dump":
+                    RawDump.RunDump(args);
+                    break;
+
                 default:
                     ShowMenu(viewer);
                     break;
